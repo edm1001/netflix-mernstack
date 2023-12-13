@@ -7,6 +7,7 @@ export default function Signup() {
   return (
     <Container>
       <BgImage />
+      <div className="content">
       <Header />
       <div className="body flex column a-center j-center">
         <div className='text flex column'>
@@ -22,7 +23,19 @@ export default function Signup() {
       </div>
       <button>Log In</button>
       </div>
+      </div>
     </Container>
   )
 }
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 15vh 85vh;
+  }
+`;

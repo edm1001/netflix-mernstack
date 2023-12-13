@@ -1,7 +1,20 @@
 import React from 'react'
+import background from '../assets/ntflx-login.jpg'
+import styled from 'styled-components'
 
-export default function BgImage() {
+export default function bgImage() {
   return (
-    <div>bgImage</div>
+    <Container>
+        <img src={background} alt="background" />
+    </Container>
   )
 }
+
+const Container = styled.div`
+    height: 100vh;
+    width: 100vw;
+    img {
+        height: 100vh;
+        width: 100vw;
+    }
+`;
