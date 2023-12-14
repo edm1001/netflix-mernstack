@@ -33,9 +33,11 @@ const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    margin-left: 15%;
     height: 100vh
-    width: 100vw;
+    width: 100%;
     display: grid;
     grid-template-rows: 15vh 85vh;
+    justify-content: center;
   }
 `;
