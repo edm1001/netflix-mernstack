@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import styled from 'styled-components';
 import Header from '../components/Header';
 import BgImage from '../components/bgImage';
-import {firebaseAuth} from '../utils/firebase-config'
+import {firebaseAuth} from '../utils/firebase-config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({ email: "", password: ""});
@@ -10,7 +12,7 @@ export default function Signup() {
   const handleSignIn = async () => {
     try {
       const {email, password} = formValues;
-      console.log(formValues)
+      await createUserWithEmailAndPassword (firebaseAuth, email, password)
     } catch(err){
       console.log(err);
     }
