@@ -2,12 +2,22 @@ import React, {useState} from 'react'
 import styled from 'styled-components';
 import Header from '../components/Header';
 import BgImage from '../components/bgImage';
-
+import {firebaseAuth} from '../utils/firebase-config'
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formValues, setFormValues] = useState({ email: "", password: ""});
+
+  const handleSignIn = async () => {
+    try {
+      const {email, password} = formValues;
+      console.log(formValues)
+    } catch(err){
+      console.log(err);
+    }
+  }
 
   return (
-    <Container>
+    <Container showPassword={showPassword}>
       <BgImage />
       <div className="content">
       <Header login />
@@ -19,11 +29,14 @@ export default function Signup() {
 
         </div>
       <div className='form'>
-        <input type='email' placeholder='Enter your Email Address' name='email' />
-        <input type='password' placeholder='Enter your Password' name='password' />
-        <button>Get Started</button>
+        <input type='email' placeholder='Enter your Email Address' name='email' value={formValues.email} onChange={(e) => setFormValues({...formValues, [e.target.name]: e.target.value})} />
+        {showPassword && (
+          <input type='password' placeholder='Enter your Password' name='password' value={formValues.password} onChange={(e) => setFormValues({...formValues, [e.target.name]: e.target.value})}/>
+        )}
+
+        {!showPassword && <button onClick={()=> setShowPassword(true)}>Get Started</button>}
       </div>
-      <button>Log In</button>
+      <button onClick={handleSignIn}>Sign Up</button>
       </div>
       </div>
     </Container>
@@ -54,6 +67,7 @@ const Container = styled.div`
     .form {
       display: grid;
       width: 60%;
+      grid-template-columns:${({showPassword})=> showPassword ? "1fr 1fr" : "2fr 1fr"};
       input {
         color: black;
         border: none;
