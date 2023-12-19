@@ -11,7 +11,7 @@ export default function Netflix() {
 
   return (
     <div>
-      <h1>Netflix</h1>
+
       <Navbar isScrolled={isScrolled} />
     </div>
   )
