@@ -57,48 +57,32 @@ const Container = styled.div`
     width: 100vw;
     display: grid;
     grid-template-rows: 15vh 85vh;
-    .body {
-      gap: 1rem;
-      .text{
-        gap:1rem;
-        text-align: center;
-        font-size: 1rem;
-      h1{
-        padding: 0 15rem;
-      }
-    }
-    .form {
-      display: grid;
-      width: 60%;
-      grid-template-columns:${({showPassword})=> showPassword ? "1fr 1fr" : "2fr 1fr"};
-      input {
-        color: black;
-        border: none;
-        padding: 1.5rem;
-        font-size:1.2rem;
-        border: 1px solid black;
-        &:focus{
-          outline: none;
+    .form-container {
+      gap: 2rem;
+      height: 85vh;
+      .form{
+        padding: 2rem;
+        background-color:#0000;
+        width: 25vw;
+        gap: 2rem;
+        color: white;
+        .container {
+          gap: 2rem;
+          input {
+            padding: 0.5rem 1rem;
+            width: 15rem;
+          }
+          button {
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            color:white;
+            background-color: #e50914;
+            font-size: 1.05rem;
+            border-radius: 0.2rem
+          }
         }
       }
-      button {
-        padding: 0.5rem 1rem;
-        border: none;
-        cursor: pointer;
-        color:white;
-        background-color: #e50914;
-        font-size: 1.05rem;
-      }
-    }
-    button{
-      padding: 0.5rem 1rem;
-      border: none;
-      cursor: pointer;
-      color:white;
-      background-color: #e50914;
-      font-size: 1.05rem;
-      border-radius: 0.2rem
-    }
     }
   }
 `;
