@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import logo from '../assets/netflix-logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {FaSearch, FaPowerOff} from 'react-icons/fa';
-import { signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {firebaseAuth} from '../utils/firebase-config.js';
 
 export default function Navbar({isScrolled}) {
@@ -13,9 +13,13 @@ export default function Navbar({isScrolled}) {
         {name: "Movies", link: "/movies"},
         {name: "My List", link: "mylist"}
     ];
+    const navigate = useNavigate();
+    onAuthStateChanged(firebaseAuth, (currentUser)=>{
+        if (!currentUser) navigate("/login");
+      })
+
     const [showSearch, setShowSearch] = useState(false);
     const [inputHover, setInputHover] = useState(false);
-
     return (
     <Container>
     <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
