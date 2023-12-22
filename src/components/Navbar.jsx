@@ -18,7 +18,7 @@ export default function Navbar({isScrolled}) {
 
     return (
     <Container>
-    <nav className={`flex ${isScrolled ? "scrolled" : ""}`}>
+    <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
         <div className="left flex a-center">
             <div className="brand flex a-center j-center">
                 <img src={logo} alt="logo" />
@@ -26,7 +26,7 @@ export default function Navbar({isScrolled}) {
             <ul className="links flex">
                 {links.map(({name,link}) => {
                     return (
-                        <li>
+                        <li key={name}>
                             <Link to={link}>{name}</Link>
                         </li>
                     )
@@ -34,11 +34,14 @@ export default function Navbar({isScrolled}) {
             </ul>
             </div>
             <div className="right flex a-center">
-                <div className={`search ${showSearch} ? "show-search": ""`}>
-                    <button onFocus={() => setShowSearch} onBlur={()=> {
-                            if (!inputHover) setShowSearch(false);
+                <div className={`search ${showSearch ? "show-search" : ""}`}>
+                    <button 
+                    onFocus={() => setShowSearch(true)} 
+                    onBlur={()=> {
+                            if (!inputHover) {
+                                setShowSearch(false);
                         }
-                        }>
+                        }}>
                         <FaSearch />
                     </button>
                     <input type="text" placeholder='Search'
@@ -50,7 +53,7 @@ export default function Navbar({isScrolled}) {
                         }}
                     /> 
                 </div>
-                <button onClick={()=>signOut(firebaseAuth) }>
+                <button onClick={()=>signOut(firebaseAuth)}>
                     <FaPowerOff />
                 </button>
             </div>
@@ -116,11 +119,37 @@ const Container = styled.div`
                 padding-left: 0.5rem;
                 button {
                     background-color : transparent;
+                    border:none;
+                    &:focus {
+                        outline: none;
+                    }
                     svg {
                         color: white
                     }
                 }
+                input {
+                    width:0;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 0.3 ease-in-out;
+                    background-color: transparent;
+                    border: none;
+                    color:white;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .show-search {
+                border: 1px solid white;
+                background-color: rgba(0, 0, 0, 0.7);
+                input {
+                    width: 100%;
+                    opacity: 1;
+                    visibility: visible;
+                    padding: 0.3rem;
+                }
             }
         }
     }
-`
+`;
