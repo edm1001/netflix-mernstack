@@ -4,9 +4,12 @@ import backgroundImage from '../assets/home.jpg';
 import MovieCard from '../assets/homeTitle.webp';
 import {FaPlay} from 'react-icons/fa';
 import {AiOutlineInfoCircle} from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -23,7 +26,7 @@ export default function Netflix() {
           <img src={MovieCard} alt="movie logo" />
         </div>
         <div className="buttons flex">
-          <button className="flex a-center j-center">
+          <button className="flex a-center j-center" onClick={()=>navigate('/player')}>
             <FaPlay />
             Play
           </button>
